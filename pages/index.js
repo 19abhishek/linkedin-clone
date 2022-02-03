@@ -1,9 +1,19 @@
 import Head from "next/head";
 import Header from "../components/Header";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Sidebar from "../components/Sidebar";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+  const { status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      // The user is not authenticated, handle it here.
+      router.push("/home");
+    },
+  });
+
   return (
     <div className="bg-[#F3F2EF] dark:bg-black dark:text-white h-screen overflow-y-scroll md:space-y-6">
       <Head>
@@ -32,4 +42,10 @@ export async function getServerSideProps(context) {
       },
     };
   }
+
+  return {
+    props: {
+      session,
+    },
+  };
 }
