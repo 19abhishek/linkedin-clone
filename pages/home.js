@@ -10,7 +10,6 @@ import Head from "next/head";
 import { getProviders, signIn } from "next-auth/react";
 
 function Home({ providers }) {
-  console.log(providers);
   return (
     <div className="space-y-10 relative">
       <Head>
@@ -29,7 +28,7 @@ function Home({ providers }) {
             <HeaderLink Icon={BusinessCenterIcon} text="Jobs" />
           </div>
 
-          {/* {Object.values(providers).map((provider) => (
+          {Object.values(providers).map((provider) => (
             <div key={provider.name}>
               <div className="pl-4">
                 <button
@@ -40,7 +39,7 @@ function Home({ providers }) {
                 </button>
               </div>
             </div>
-          ))} */}
+          ))}
         </div>
       </header>
 
